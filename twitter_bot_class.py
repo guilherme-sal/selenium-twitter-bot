@@ -1,10 +1,19 @@
 from selenium import webdriver
 from selenium import common
 from selenium.webdriver.common import keys
-from webdriver_manager.firefox import GeckoDriverManager
 import time
+from dotenv import load_dotenv
+import os
 
-driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+load_dotenv()
+
+if os.environ['BROWSER'] == 'Firefox':
+    PATH = './'
+    driver = webdriver.Firefox(PATH)
+elif os.environ['BROWSER'] == 'Chrome':
+    PATH = './chromedriver2'
+    driver = webdriver.Chrome(PATH)
+
 
 class TwitterBot:
 
